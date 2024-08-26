@@ -68,10 +68,9 @@ If you ever see "No Auth Method", it means the scripts/authenticate python scrip
 4. If everything works fine, the SAML with enter ACS phase than redirect to the NSO WebUI One. 
 
 ### Guide and Demo Video
-* Deployment Guide: extra/doc
-* Native: extra/demo/NSO SSO DUO Integration - Native.mov
-* Containerized NSO:  extra/demo/NSO SSO DUO Integration - Containerized.mov
-* Demo with Package Capture: extra/demo/NSO SSO DUO Package Capture.mov
+* Deployment Guide: [Deployment Guide](https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso/blob/main/extra/doc/DUO%20Deployment%20Guide.pdf)
+* Native: [NSO SSO DUO Integration - Native](https://youtu.be/V-BlBHqbHPw)
+* Containerized NSO:  [NSO SSO DUO Integration - Containerized](https://youtu.be/oZaoPolIBWA)
 
 ### Copyright and License Notice
 ``` 
