@@ -1,0 +1,17 @@
+cisco-nso-saml2-auth-deps
+flask-saml2
+keys
+*.pyc
+*.swp
+logs/*
+!logs/.gitkeep
+state/*
+!state/.gitkeep
+ncs-cdb/*.cdb
+cisco-nso-saml2-auth.xml.xml
+aaa_config.xml
+storedstate
+ncs-cdb/*.lock
+cisco-nso-saml2-auth.xml
+extra/demo/*.mov
+.DS_Store
