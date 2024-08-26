@@ -12,7 +12,7 @@ saml_pkg: packages/cisco-nso-saml2-auth \
 
 packages/cisco-nso-saml2-auth:
 	cd packages/ ; git clone git@github.com:NSO-developer/nso-sso-duo-integration-package.git
-	cd packages/ ; mv nso-sso-duo-integration---package cisco-nso-saml2-auth
+	cd packages/ ; mv nso-sso-duo-integration-package cisco-nso-saml2-auth
 
 pyvenv:
 	pip $(PIP_OPTS) install pip --upgrade
