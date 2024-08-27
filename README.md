@@ -57,6 +57,10 @@ Now we can get started with the NSO configuration through our PoC code here.
 
 More detail about the configuration, check the deployment guide in "extra/doc/deployment_guide.doc"
 
+## Tested Enviorment
+NSO Version Requirment: >=6.3.0
+
+
 ## Use the PoC code.
 1. Prepare the enviorment by copy and build the SAML packages than create the XML payload for NSO configuration. NSO will also start up because we need to load replace the configuration XML payload into the NSO. 
 ```
