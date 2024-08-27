@@ -58,7 +58,8 @@ Now we can get started with the NSO configuration through our PoC code here.
 More detail about the configuration, check the deployment guide in "extra/doc/deployment_guide.doc"
 
 ## Tested Enviorment
-NSO Version Requirment: >=6.3.0
+NSO Version: >=6.3.0 
+However, for NSO Version 6.1.11 and 6.2.4 also works fine with no problem
 
 
 ## Use the PoC code.
