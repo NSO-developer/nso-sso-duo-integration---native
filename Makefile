@@ -1,4 +1,6 @@
 PKG_DIR = $(NCS_DIR)/packages/auth/cisco-nso-saml2-auth
+NCS_VER = $(shell ncs --version)
+NCS_VER_SPLIT = $(shell python -c "ver=str('$(NCS_VER)').split('.'); print(ver[0]+'.'+ver[1])")
 
 
 .PHONY: all
@@ -11,7 +13,8 @@ saml_pkg: packages/cisco-nso-saml2-auth \
 	$(MAKE) -C packages/cisco-nso-saml2-auth/src all
 
 packages/cisco-nso-saml2-auth:
-	cd packages/ ; git clone git@github.com:NSO-developer/nso-sso-duo-integration-package.git
+	cd packages/ ; git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
+	cd packages/nso-sso-duo-integration-package ; git checkout $(NCS_VER_SPLIT)
 	cd packages/ ; mv nso-sso-duo-integration-package cisco-nso-saml2-auth
 
 pyvenv:
@@ -35,6 +38,7 @@ clean:
 	rm -rf keys  __pycache__
 	rm -f cisco-nso-saml2-auth-deps cisco-nso-saml2-auth.xml
 	rm -rf packages/cisco-nso-saml2-auth
+	rm -rf packages/nso-sso-duo-integration-package
 
 
 clean-logs:
