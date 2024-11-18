@@ -4,7 +4,7 @@ NCS_VER_SPLIT = $(shell python -c "ver=str('$(NCS_VER)').split('.'); print(ver[0
 
 
 .PHONY: all
-all: saml_pkg 
+all: saml_pkg build_duo
 	$(MAKE) stop start cisco-nso-saml2-auth.xml
 
 
@@ -13,9 +13,13 @@ saml_pkg: packages/cisco-nso-saml2-auth \
 	$(MAKE) -C packages/cisco-nso-saml2-auth/src all
 
 packages/cisco-nso-saml2-auth:
-	cd packages/ ; git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
+	# cd packages/ ; git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
+	cd packages/cisco-nso-saml2-auth ; git clone org-526376@github.com:duosecurity/duo_unix.git
 	cd packages/nso-sso-duo-integration-package ; git checkout $(NCS_VER_SPLIT)
 	cd packages/ ; mv nso-sso-duo-integration-package cisco-nso-saml2-auth
+
+build_duo:
+	$(MAKE) -C packages/cisco-nso-saml2-auth duo
 
 pyvenv:
 	pip $(PIP_OPTS) install pip --upgrade
@@ -37,7 +41,7 @@ clean:
 	rm -rf ./netsim running.DB logs/* state/* ncs-cdb/*
 	rm -rf keys  __pycache__
 	rm -f cisco-nso-saml2-auth-deps cisco-nso-saml2-auth.xml
-	rm -rf packages/cisco-nso-saml2-auth
+	# rm -rf packages/cisco-nso-saml2-auth
 	rm -rf packages/nso-sso-duo-integration-package
 
 
