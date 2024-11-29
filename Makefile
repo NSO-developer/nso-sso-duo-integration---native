@@ -1,7 +1,7 @@
 PKG_DIR = $(NCS_DIR)/packages/auth/cisco-nso-saml2-auth
 NCS_VER = $(shell ncs --version)
-NCS_VER_SPLIT = $(shell python -c "ver=str('$(NCS_VER)').split('.'); print(ver[0]+'.'+ver[1])")
-
+#NCS_VER_SPLIT = $(shell python -c "ver=str('$(NCS_VER)').split('.'); print(ver[0]+'.'+ver[1])")
+NCS_VER_SPLIT = "cli_auth"
 
 .PHONY: all
 all: saml_pkg build_duo
@@ -13,10 +13,12 @@ saml_pkg: packages/cisco-nso-saml2-auth \
 	$(MAKE) -C packages/cisco-nso-saml2-auth/src all
 
 packages/cisco-nso-saml2-auth:
-	# cd packages/ ; git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
-	cd packages/cisco-nso-saml2-auth ; git clone org-526376@github.com:duosecurity/duo_unix.git
-	cd packages/nso-sso-duo-integration-package ; git checkout $(NCS_VER_SPLIT)
+	cd packages/ && git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
+	cd packages/nso-sso-duo-integration-package && git clone org-526376@github.com:duosecurity/duo_unix.git
+	cd packages/nso-sso-duo-integration-package && git checkout $(NCS_VER_SPLIT)
+	cd packages/nso-sso-duo-integration-package && $(MAKE) deps 
 	cd packages/ ; mv nso-sso-duo-integration-package cisco-nso-saml2-auth
+
 
 build_duo:
 	$(MAKE) -C packages/cisco-nso-saml2-auth duo

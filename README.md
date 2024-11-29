@@ -1,4 +1,4 @@
-# NSO SSO DUO Intergration PoC - Native 
+# NSO SSO DUO Intergration PoC - Native (With CLI 2FA)
 This repositiory is the demo code of integrate DUO into NSO SSO with NSO native installation.  This example is setup with clear text communication. There will be another repository with Containerized NSO version.  
 * Containerized NSO Example:  https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso
 * Duo Integration Package:  https://github.com/NSO-developer/nso-sso-duo-integration-package 
@@ -60,7 +60,7 @@ More detail about the configuration, check the deployment guide in "extra/doc/de
 ## Tested Enviorment
 NSO Version: >=6.3.0 
 However, for NSO Version 6.1.11 and 6.2.4 also works fine with no problem
-
+CLI 2FA is tested based on Ubuntu 24 with package-challenge feature
 
 ## Use the PoC code.
 1. Prepare the enviorment by copy and build the SAML packages than create the XML payload for NSO configuration. NSO will also start up because we need to load replace the configuration XML payload into the NSO. 
@@ -72,12 +72,37 @@ DUO_URL="<DUO_URL>" NSO_URL="<NSO_URL>" make clean all
 If you ever see "No Auth Method", it means the scripts/authenticate python script has crashed due to some misconfiguration or bug in the packages. Troubleshoot by using "logger.info()" function. The log will be print into the "logs/ncs-python-saml2-auth.log"  
 4. If everything works fine, the SAML with enter ACS phase than redirect to the NSO WebUI One. 
 
-### Guide and Demo Video
+### CLI Specific Steps
+8. Follow the guide [login_duo Guide](https://duo.com/docs/loginduo) and setup login_duo.conf in /etc/duo or /etc/security as below
+```
+[duo]
+; Duo integration key
+ikey = <integration key>
+; Duo secret key
+skey = <secret key>
+; Duo API host
+host = <DUO URL>
+; `failmode = safe` In the event of errors with this configuration file or connection to the Duo service
+; this mode will allow login without 2FA.
+; `failmode = secure` This mode will deny access in the above cases. Misconfigurations with this setting
+; enabled may result in you being locked out of your system.
+failmode = safe
+; Send command for Duo Push authentication
+pushinfo = yes
+prompts = 1
+autopush = yes
+```
+
+## Guide and Demo Video
 * Deployment Guide: [Deployment Guide](https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso/blob/main/extra/doc/DUO%20Deployment%20Guide.pdf)
 * Native: [NSO SSO DUO Integration - Native](https://youtu.be/V-BlBHqbHPw)
 * Containerized NSO:  [NSO SSO DUO Integration - Containerized](https://youtu.be/oZaoPolIBWA)
 
-### Copyright and License Notice
+## Special Notice
+This version of the code only works in Linux base system. MacOS and Windows will not work due to login_duo only support Linux. More specificly Ubuntu 24 is what this code written upon and can provide more seamless expierence.   
+CLI protection support via login_duo also do not require external reachable URL/IP address like WebUI protection via SAML. 
+
+## Copyright and License Notice
 ``` 
 Copyright (c) 2024 Cisco and/or its affiliates.
 
