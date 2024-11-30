@@ -3,6 +3,12 @@ This repositiory is the demo code of integrate DUO into NSO SSO with NSO native 
 * Containerized NSO Example:  https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso
 * Duo Integration Package:  https://github.com/NSO-developer/nso-sso-duo-integration-package 
 
+## Branches
+The repository is seperated into two branch. 
+* main - WebUI protection with DUO
+* cli_auth -  WebUI protection + CLI over SSH Multifactor Authentication with DUO
+
+The cli_auth branch only works in Linux due to the limitation of the duo_login CLI Tool. More specifictly, "cli_auth" branch is build based on Ubuntu. "main" branch do not have such limitation. Therefore, we create two seperate branch.
 
 ## Prequisition
 The following must be done before using the repository  
