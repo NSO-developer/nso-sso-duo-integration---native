@@ -3,6 +3,8 @@ This repositiory is the demo code of integrate DUO into NSO SSO with NSO native 
 * Containerized NSO Example:  https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso
 * Duo Integration Package:  https://github.com/NSO-developer/nso-sso-duo-integration-package 
 
+Except the WebUI protection and feature that introduced in the "main" branch, this branch also include the CLI protection with Multifactor Authentication(2FA) via "external-challenge" and "package-challenge".
+
 
 ## Prequisition
 The following must be done before using the repository  
@@ -58,8 +60,8 @@ Now we can get started with the NSO configuration through our PoC code here.
 More detail about the configuration, check the deployment guide in "extra/doc/deployment_guide.doc"
 
 ## Tested Enviorment
-NSO Version: >=6.3.0 
-However, for NSO Version 6.1.11 and 6.2.4 also works fine with no problem
+NSO Version: >=6.3.0  
+However, for NSO Version 6.1.11 and 6.2.4 also works fine with no problem.  
 CLI 2FA is tested based on Ubuntu 24 with package-challenge feature
 
 ## Use the PoC code.
@@ -73,7 +75,8 @@ If you ever see "No Auth Method", it means the scripts/authenticate python scrip
 4. If everything works fine, the SAML with enter ACS phase than redirect to the NSO WebUI One. 
 
 ### CLI Specific Steps
-8. Follow the guide [login_duo Guide](https://duo.com/docs/loginduo) and setup login_duo.conf in /etc/duo or /etc/security as below
+After the steps above is done, also do the following for CLI Protection. CLI Protection is based on login_duo CLI tool. The following step is used to build and enable it during the challenge.    
+5. Follow the guide [login_duo Guide](https://duo.com/docs/loginduo) and setup login_duo.conf in /etc/duo or /etc/security as below
 ```
 [duo]
 ; Duo integration key

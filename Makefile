@@ -43,7 +43,7 @@ clean:
 	rm -rf ./netsim running.DB logs/* state/* ncs-cdb/*
 	rm -rf keys  __pycache__
 	rm -f cisco-nso-saml2-auth-deps cisco-nso-saml2-auth.xml
-	# rm -rf packages/cisco-nso-saml2-auth
+	rm -rf packages/cisco-nso-saml2-auth
 	rm -rf packages/nso-sso-duo-integration-package
 
 
