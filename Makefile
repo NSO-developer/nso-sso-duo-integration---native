@@ -14,7 +14,6 @@ saml_pkg: packages/cisco-nso-saml2-auth \
 
 packages/cisco-nso-saml2-auth:
 	cd packages/ && git clone https://github.com/NSO-developer/nso-sso-duo-integration-package.git
-	cd packages/nso-sso-duo-integration-package && git clone org-526376@github.com:duosecurity/duo_unix.git
 	cd packages/nso-sso-duo-integration-package && git checkout $(NCS_VER_SPLIT)
 	cd packages/nso-sso-duo-integration-package && $(MAKE) deps 
 	cd packages/ ; mv nso-sso-duo-integration-package cisco-nso-saml2-auth
