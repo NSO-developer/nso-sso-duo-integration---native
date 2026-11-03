@@ -2,7 +2,7 @@
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/NSO-developer/nso-sso-duo-integration---native)  
 This repositiory is the demo code of integrate DUO into NSO SSO with NSO native installation.  This example is setup with clear text communication. There will be another repository with Containerized NSO version.  
 * Containerized NSO Example:  https://github.com/NSO-developer/nso-sso-duo-integration---containerzed-nso
-* Duo Integration Package:  https://github.com/NSO-developer/nso-sso-duo-integration-package 
+* SAML authentication package: included in the NSO installation at `$NCS_DIR/packages/auth/cisco-nso-saml2-auth/`.
 
 ## Branches
 The repository is seperated into two branch. 
@@ -70,7 +70,7 @@ However, for NSO Version 6.1.11 and 6.2.4 also works fine with no problem
 
 
 ## Use the PoC code.
-1. Prepare the enviorment by copy and build the SAML packages than create the XML payload for NSO configuration. NSO will also start up because we need to load replace the configuration XML payload into the NSO. 
+1. Load your native NSO environment (for example, `source /path/to/nso/ncsrc`) so that `NCS_DIR` points to your NSO installation and the NSO commands are available. Ensure that `$NCS_DIR/packages/auth/cisco-nso-saml2-auth/` exists. The Makefile copies this bundled package into `packages/cisco-nso-saml2-auth/`, installs its Python dependencies, and builds it before creating the XML configuration payload. NSO will also start up to load the configuration.
 ```
 DUO_URL="<DUO_URL>" NSO_URL="<NSO_URL>" make clean all
 ```
